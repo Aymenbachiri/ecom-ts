@@ -9,7 +9,7 @@ export async function GET(req: NextRequest) {
   try {
     await connectToDB();
 
-    const products = await Product.find(creator && { creator });
+    const products = await Product.find(creator ? { creator } : {});
     return new Response(JSON.stringify(products), { status: 200 });
   } catch (error) {
     return new Response("Failed to fetch my products", { status: 500 });
